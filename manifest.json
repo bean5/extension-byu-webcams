@@ -1,0 +1,13 @@
+{
+  "name": "BYU Webcams",
+  "version": "1.0",
+  "manifest_version": 2,
+  "offline_enabled": false,
+  "description": "Displays the current public BYU webcam images.",
+  "browser_action": 
+  {
+	"default_title": "BYU Webcams",
+    "default_icon": "favicon.ico",
+    "default_popup": "popup.html"
+  }
+}
