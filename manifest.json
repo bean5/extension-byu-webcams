@@ -9,5 +9,10 @@
 	"default_title": "BYU Webcams",
     "default_icon": "favicon.ico",
     "default_popup": "popup.html"
+  },
+  "icons":
+  {
+	"128" : "favicon.ico",
+	"256" : "favicon.ico"
   }
 }
