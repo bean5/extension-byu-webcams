@@ -14,5 +14,8 @@
   {
 	"128" : "favicon.ico",
 	"256" : "favicon.ico"
-  }
+  },
+  "permissions": [
+    "http://students.cs.byu.edu/"
+  ]
 }

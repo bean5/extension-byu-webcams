@@ -1,22 +1,37 @@
 setInterval(updateKimballTower, 60 * 1000);
-setInterval(updateMtTimp, 400);
+setInterval(updateMtTimp, 4000);
 setInterval(updateConstruction, 400);
 setInterval(updateBroadcasting, 500);
 setInterval(updateTestingCenter, 7 * 1000);
 setInterval(updateCardCenter, 10);
 
-var d = new Date();
+src = "http://marvin.byu.edu/Weather/tmp/w16361-134532371.jpeg";
+
+getUpdatedSource();
+//update source of marvin src
+setInterval(getUpdatedSource, 60 * 1 * 1000);
 
 function updateKimballTower()
 {
 	document.getElementById("kimballTower").src = "";
-	document.getElementById("kimballTower").src = "http://psych.byu.edu/files/Picture1.jpg?uniq=" + d.getTime();
+	document.getElementById("kimballTower").src = "http://psych.byu.edu/files/Picture1.jpg";
 }
 
 function updateMtTimp()
-{
+{	
 	document.getElementById("mtTimp").src = "";
-	document.getElementById("mtTimp").src = "http://marvin.byu.edu/Weather/tmp/w10954-1345170957.jpeg";
+	document.getElementById("mtTimp").src = src;
+}
+
+function getUpdatedSource()
+{
+	$.ajax({
+		type: "GET",
+		url: 'http://students.cs.byu.edu/~bean5/webcam_helpers/marvin_timp.php',
+		success:function(data){
+			src = data;
+		}
+	});
 }
 
 function updateBroadcasting()
