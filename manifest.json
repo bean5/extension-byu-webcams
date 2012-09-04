@@ -15,7 +15,8 @@
 	"128" : "favicon.ico",
 	"256" : "favicon.ico"
   },
+  "web_accessible_resources": ["http://students.cs.byu.edu/~bean5/webcam_helpers/marvin_timp.php"],
   "permissions": [
-    "http://students.cs.byu.edu/"
+    "unlimitedStorage"
   ]
 }

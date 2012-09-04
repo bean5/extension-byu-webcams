@@ -1,15 +1,30 @@
 setInterval(updateKimballTower, 60 * 1000);
-setInterval(updateMtTimp, 4000);
 setInterval(updateConstruction, 400);
 setInterval(updateBroadcasting, 500);
 setInterval(updateTestingCenter, 7 * 1000);
 setInterval(updateCardCenter, 10);
 
-src = "http://marvin.byu.edu/Weather/tmp/w16361-134532371.jpeg";
+useLocal = typeof(Storage)!=="undefined";
 
-getUpdatedSource();
-//update source of marvin src
-setInterval(getUpdatedSource, 60 * 1 * 1000);
+
+if(localStorage.timp_src == null || localStorage.timp_src == '')
+	localStorage.timp_src = "http://marvin.byu.edu/Weather/tmp/w16361-134532371.jpeg";
+
+getUpdatedSource(); //update source of marvin src
+setInterval(getUpdatedSource, 10 * 1 * 1000);
+setInterval(updateMtTimp, 1000);
+
+function getUpdatedSource()
+{
+	$.ajax({
+		type: "GET",
+		url: 'http://students.cs.byu.edu/~bean5/webcam_helpers/marvin_timp.php',
+		success:function(data){
+			localStorage.timp_src = data;
+			updateMtTimp();
+		}
+	});
+}
 
 function updateKimballTower()
 {
@@ -19,19 +34,15 @@ function updateKimballTower()
 
 function updateMtTimp()
 {	
+	if(localStorage.timp_src == '')
+	{
+		document.getElementById('timpArea').style.display = 'none';
+	}
+	else
+		document.getElementById('timpArea').style.display = '';
+	
 	document.getElementById("mtTimp").src = "";
-	document.getElementById("mtTimp").src = src;
-}
-
-function getUpdatedSource()
-{
-	$.ajax({
-		type: "GET",
-		url: 'http://students.cs.byu.edu/~bean5/webcam_helpers/marvin_timp.php',
-		success:function(data){
-			src = data;
-		}
-	});
+	document.getElementById("mtTimp").src = localStorage.timp_src;
 }
 
 function updateBroadcasting()
