@@ -2,7 +2,8 @@ setInterval(updateKimballTower, 60 * 1000);
 setInterval(updateConstruction, 400);
 setInterval(updateBroadcasting, 500);
 setInterval(updateTestingCenter, 7 * 1000);
-setInterval(updateCardCenter, 10);
+setInterval(updateCardCenter, 1*1000);
+setInterval(updateBrimhall, 60*1000);
 
 useLocal = typeof(Storage)!=="undefined";
 
@@ -69,4 +70,10 @@ function updateCardCenter()
 {
 	document.getElementById("card_center").src = "";
 	document.getElementById("card_center").src = "http://10.25.116.231/axis-cgi/jpg/image.cgi?resolution=640x480";
+}
+
+function updateBrimhall()
+{
+	document.getElementById("brim").src = "";
+	document.getElementById("brim").src = "http://newsline.byu.edu/webcam/brmb-e/brmb-e.jpg";
 }
