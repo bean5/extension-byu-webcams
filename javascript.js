@@ -29,8 +29,7 @@ function getUpdatedSource()
 
 function updateKimballTower()
 {
-	document.getElementById("kimballTower").src = "";
-	document.getElementById("kimballTower").src = "http://psych.byu.edu/files/Picture1.jpg";
+	document.getElementById("kimballTower").src = "http://psych.byu.edu/files/Picture1.jpg" + getTimeStampString();
 }
 
 function updateMtTimp()
@@ -42,38 +41,36 @@ function updateMtTimp()
 	else
 		document.getElementById('timpArea').style.display = '';
 	
-	document.getElementById("mtTimp").src = "";
-	document.getElementById("mtTimp").src = localStorage.timp_src;
+	document.getElementById("mtTimp").src = localStorage.timp_src + getTimeStampString();
 }
 
 function updateBroadcasting()
 {
-	document.getElementById("broadcasting").src = "";
-	document.getElementById("broadcasting").src = "http://byubwc.byu.edu/building/live/readImage2.asp";
+	document.getElementById("broadcasting").src = "http://byubwc.byu.edu/building/live/readImage2.asp" + getTimeStampString();
 }
 
 function updateConstruction()
 {
-	document.getElementById("construction1").src = "";
-	document.getElementById("construction1").src = "http://lswebcam1.byu.edu/cam/cam_1.jpg";
-	document.getElementById("construction2").src = "";
-	document.getElementById("construction2").src = "http://lswebcam1.byu.edu/cam/bnsn/bnsn1.jpg";
+	document.getElementById("construction1").src = "http://lswebcam1.byu.edu/cam/cam_1.jpg" + getTimeStampString();
+	document.getElementById("construction2").src = "http://lswebcam1.byu.edu/cam/bnsn/bnsn1.jpg" + getTimeStampString();
 }
 
 function updateTestingCenter()
 {
-	document.getElementById("testing_center").src = "";
-	document.getElementById("testing_center").src = "http://testing.byu.edu/images/conditions/axiscam.jpg";
+	document.getElementById("testing_center").src = "http://testing.byu.edu/images/conditions/axiscam.jpg" + getTimeStampString();
 }
 
 function updateCardCenter()
 {
-	document.getElementById("card_center").src = "";
-	document.getElementById("card_center").src = "http://10.25.116.231/axis-cgi/jpg/image.cgi?resolution=640x480";
+	document.getElementById("card_center").src = "http://10.25.116.231/axis-cgi/jpg/image.cgi?resolution=640x480" + getTimeStampString();
 }
 
 function updateBrimhall()
 {
-	document.getElementById("brim").src = "";
-	document.getElementById("brim").src = "http://newsline.byu.edu/webcam/brmb-e/brmb-e.jpg";
+	document.getElementById("brim").src = "http://newsline.byu.edu/webcam/brmb-e/brmb-e.jpg" + getTimeStampString();
+}
+
+function getTimeStampString()
+{
+	return "?timestamp=" + Date();
 }
