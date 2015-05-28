@@ -1,76 +1,99 @@
 setInterval(updateKimballTower, 60 * 1000);
-setInterval(updateConstruction, 400);
+// setInterval(updateConstruction, 400);//no known construction webcams at this time
 setInterval(updateBroadcasting, 500);
 setInterval(updateTestingCenter, 7 * 1000);
 setInterval(updateCardCenter, 1*1000);
 setInterval(updateBrimhall, 60*1000);
+setInterval(updateStudentFitness, 60*1000);
 
-useLocal = typeof(Storage)!=="undefined";
+//For future use: useLocal = typeof(Storage)!=='undefined';
 
+//Probably now defunct along with getUpdatedSource()
+//if(localStorage.timp_src == null || localStorage.timp_src == '')
+	// previously used http://marvin.byu.edu/Weather/tmp/w16361-134532371.jpeg
+	//localStorage.timp_src = 'http://marvin.byu.edu/Weather/webcam800.jpg';
 
-if(localStorage.timp_src == null || localStorage.timp_src == '')
-	localStorage.timp_src = "http://marvin.byu.edu/Weather/tmp/w16361-134532371.jpeg";
-
-getUpdatedSource(); //update source of marvin src
-setInterval(getUpdatedSource, 10 * 1 * 1000);
+// getUpdatedSource(); //update source of marvin src
+//setInterval(getUpdatedSource, 10 * 1 * 1000);
 setInterval(updateMtTimp, 1000);
 
 function getUpdatedSource()
 {
+	//deprecated/defunct, return early if called
+	return;
 	$.ajax({
-		type: "GET",
+		type: 'GET',
 		url: 'http://students.cs.byu.edu/~bean5/webcam_helpers/marvin_timp.php',
 		success:function(data){
 			localStorage.timp_src = data;
 			updateMtTimp();
 		}
+	}).done(function() {
+		console.log('source updated');
 	});
 }
 
+function updateImageWith(imgID, src, useTimeStampString) {
+	$('#' + imgID).attr('src', src + (useTimeStampString ? '?timestamp=' + Date() : ''));
+}
+
+/*
+	Main image update functions.
+	TODO: since most of these are so similar, consider just using anonymous functions
+*/
 function updateKimballTower()
 {
-	document.getElementById("kimballTower").src = "http://psych.byu.edu/files/Picture1.jpg" + getTimeStampString();
+	updateImageWith('kimballTower', 'http://psych.byu.edu/files/Picture1.jpg', true);
 }
 
 function updateMtTimp()
-{	
+{
 	if(localStorage.timp_src == '')
-	{
-		document.getElementById('timpArea').style.display = 'none';
-	}
+		$('#timpArea').hide();
 	else
-		document.getElementById('timpArea').style.display = '';
-	
-	document.getElementById("mtTimp").src = localStorage.timp_src + getTimeStampString();
+		$('#timpArea').show();
+
+	updateImageWith('mtTimp', 'http://marvin.byu.edu/Weather/webcam800.jpg', true);
 }
 
 function updateBroadcasting()
 {
-	document.getElementById("broadcasting").src = "http://byubwc.byu.edu/building/live/readImage2.asp" + getTimeStampString();
+	/*previously used:
+		http://byubwc.byu.edu/building/live/readImage.asp
+		http://byubwc.byu.edu/building/live/readImage2.asp
+	*/
+	updateImageWith('broadcasting', 'https://ws.byu.edu/services/cameras/rest/v1/streams/broadcasting-nw', true);
 }
 
 function updateConstruction()
 {
-	document.getElementById("construction1").src = "http://lswebcam1.byu.edu/cam/cam_1.jpg" + getTimeStampString();
-	document.getElementById("construction2").src = "http://lswebcam1.byu.edu/cam/bnsn/bnsn1.jpg" + getTimeStampString();
+	return;//No known construction cameras at this time.
+	updateImageWith('construction1', 'http://lswebcam1.byu.edu/cam/cam_1.jpg', true);
+	updateImageWith('construction2', 'http://lswebcam1.byu.edu/cam/bnsn/bnsn1.jpg', true);
 }
 
 function updateTestingCenter()
 {
-	document.getElementById("testing_center").src = "http://testing.byu.edu/images/conditions/axiscam.jpg" + getTimeStampString();
+	/*
+		previously used:
+		http://testing.byu.edu/images/conditions/axiscam.jpg
+		https://testing.byu.edu/sites/all/scripts/linecamfeed.php
+	*/
+	updateImageWith('testing_center', 'https://ws.byu.edu/services/cameras/rest/v1/streams/testing', true);
+}
+
+function updateStudentFitness() {
+	updateImageWith('fitness', 'https://ws.byu.edu/services/cameras/rest/v1/streams/student-fitness', true)
 }
 
 function updateCardCenter()
 {
-	document.getElementById("card_center").src = "http://10.25.116.231/axis-cgi/jpg/image.cgi?resolution=640x480" + getTimeStampString();
+	//Previously used http://10.25.116.231/axis-cgi/jpg/image.cgi?resolution=640x480, which only works from on campus...
+	updateImageWith('card_center', 'https://ws.byu.edu/services/cameras/rest/v1/streams/id-center', true);
 }
 
 function updateBrimhall()
 {
-	document.getElementById("brim").src = "http://newsline.byu.edu/webcam/brmb-e/brmb-e.jpg" + getTimeStampString();
-}
-
-function getTimeStampString()
-{
-	return "?timestamp=" + Date();
+	// Previously used: http://newsline.byu.edu/webcam/brmb-e/brmb-e.jpg
+	updateImageWith('brim', 'https://ws.byu.edu/services/cameras/rest/v1/streams/daily-universe', true);
 }
