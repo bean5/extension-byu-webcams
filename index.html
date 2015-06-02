@@ -1,65 +1,17 @@
 <!doctype html>
 <html>
   <head>
-	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+  	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
     <title>BYU Web Cams</title>
-	<script type="text/javascript" src="jquery-1.8.0.js"></script>
-	<script type="text/javascript" src="javascript.js"></script>
-	<link rel="stylesheet" href="css/main.css">
+  	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+  	<script type="text/javascript" src="javascript.js"></script>
+  	<link rel="stylesheet" href="css/main.css">
   </head>
 
   <body style="width: 500px" align="center">
-
-  <!--Listing at: http://globalconstant.scnay.com/2011/11/15/webcams-at-byu/-->
-
-  <!--Traverse Ridge from the Kimball Tower http://psych.byu.edu/view/lab.htm -->
-  <h2>Traverse Ridge view from the Kimball Tower</h2>
-  <img src="http://psych.byu.edu/files/Picture1.jpg" id="kimballTower" style="width:440px;" />
-  <br />
-  <br />
-
-  <!--Mount Timpanogos from the Eyring Science Center http://marvin.byu.edu/Weather/cgi-bin/getTimpImage-->
-  <div id="timpArea">
-      <h2>Mount Timpanogos view from the Eyring Science Center</h2>
-      <img src="http://marvin.byu.edu/Weather/webcam800.jpg" id="mtTimp" style="width:440px;" />
-      <br />
-      <br />
-  </div>
-
-  <!--BYU Broadcasting Building-->
-  <h2>Broadcasting Building</h2>
-  <img src="http://byubwc.byu.edu/building/live/readImage.asp" id="broadcasting" style="width:440px;" />
-  <br />
-  <br />
-
-  <!--webcam.byu.edu http://lswebcam1.byu.edu/cam/cam_1.jpg-->
-  <div id="newBuildingConstruction" style="display: none">
-      <h2>Widstoe Building view of new building construction</h2>
-      <img src="http://lswebcam1.byu.edu/cam/cam_1.jpg" id="construction1" style="width:440px;" />
-
-      <!--From BNSN Building http://webcam.byu.edu/bnsn google search "webcams site:byu.edu" yielded: http://webcam.byu.edu/bnsn -->
-      <!--<h2>Construction as seen from the Benson buidling?</h2>-->
-      <img src="http://lswebcam1.byu.edu/cam/bnsn/bnsn1.jpg" id="construction2" style="width:440px;" />
-  </div>
-
-  <!--BYU Testing Center testing center -->
-  <h2>Testing Center</h2>
-  <img src="https://ws.byu.edu/services/cameras/rest/v1/streams/testing" id="testing_center" style="width:440px;" />
-  <br />
-  <br />
-
-  <h2>Student Fitness Center</h2>
-  <img src="https://ws.byu.edu/services/cameras/rest/v1/streams/student-fitness" id="fitness" style="width:440px;" />
-
-
-  <!--BYU ID Center Webcam http://idcenter.byu.edu/webcam-->
-  <h2>Signature Card Center</h2>
-  <img src="https://ws.byu.edu/services/cameras/rest/v1/streams/id-center" style="width:440px;" id="card_center" />
-
-  <!--Brimhall East Webcam http://newsnet.byu.edu/brmb-e.asp-->
-
-  <h2>Daily Universe/Brimhall Webcam East-facing</h2>
-  <img src="http://newsline.byu.edu/webcam/brmb-e/brmb-e.jpg" id="brim" style="width:440px;" />
-
+    <!-- Camera images will be presented as images. They will be automatically reloaded according to the time intervals provided by the OIT service. The description for this challenge seemed a bit strange. Displaying a list, according to computer science, would mean to just dump the JSON, basically. As that would be dull and non-interactive, I opted to just show the images right off the bat. No need to let the user click for more information--it is mostly all provided up-front anyways. -->
   </body>
 </html>
