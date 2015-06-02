@@ -13,7 +13,11 @@
   },
   "icons":
   {
-  	"128" : "favicon.ico",
-  	"256" : "favicon.ico"
-  }
+    "128" : "favicon.ico",
+    "256" : "favicon.ico"
+  },
+  "permissions":
+  [
+    "https://soaregistry.byu.edu/services/campusInformation/webcam/v1/streams/"
+  ]
 }
