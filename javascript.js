@@ -1,5 +1,5 @@
 $(function() {
-	var defaultValues = 
+	var defaultValues =
 	[
 	    {
 	        "id": "testing",
@@ -87,16 +87,16 @@ $(function() {
 	    }
 	];
 
-	var useService = true;//can be disabled if one doesn't want to use the service.
+	var useService = false;//can be disabled if one doesn't want to use the service.
 
-	if(useService) 
+	if(useService)
 	{
 		//TODO: catch failures in case service goes down.
 		$.get('https://soaregistry.byu.edu/services/campusInformation/webcam/v1/streams/', function(response) {
 			loadValues(response);
 		});
 	}
-	else 
+	else
 	{
 		loadValues(defaultValues);
 	}
