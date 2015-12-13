@@ -1,102 +1,114 @@
 $(function() {
-	var defaultValues = 
+	var defaultValues =
 	[
 	    {
 	        "id": "testing",
 	        "name": "Testing Center",
 	        "description": "Testing Center Line Conditions",
 	        "refreshInterval": 15,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/testing"
+			"active": true,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/testing"]
 	    },
 	    {
 	        "id": "id-center",
 	        "name": "ID Center",
 	        "description": "View of the ID Center in the WSC",
 	        "refreshInterval": 15,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/id-center"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/id-center"]
 	    },
 	    {
 	        "id": "timp-esc",
 	        "name": "Mt. Timpanogos (from ESC)",
 	        "description": "",
 	        "refreshInterval": 5,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/timp-esc"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/timp-esc"]
 	    },
 	    {
 	        "id": "traverse-swkt",
 	        "name": "Traverse Ridge (from SWKT)",
 	        "description": "",
 	        "refreshInterval": 60,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/traverse-swkt"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/traverse-swkt"]
 	    },
 	    {
 	        "id": "daily-universe",
 	        "name": "Daily Universe Camera",
 	        "description": "",
 	        "refreshInterval": 60,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/daily-universe"
+			"active": true,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/daily-universe"]
 	    },
 	    {
 	        "id": "brigham-square",
 	        "name": "Brigham Square",
 	        "description": "",
 	        "refreshInterval": 2,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/brigham-square"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/brigham-square"]
 	    },
 	    {
 	        "id": "bookstore1",
 	        "name": "Bookstore Camera 1",
 	        "description": "Bookstore Cam",
 	        "refreshInterval": 2,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/bookstore1"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/bookstore1"]
 	    },
 	    {
 	        "id": "bookstore2",
 	        "name": "Bookstore Camera 2",
 	        "description": "Bookstore Cam",
 	        "refreshInterval": 2,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/bookstore2"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/bookstore2"]
 	    },
 	    {
 	        "id": "bookstore-quad",
 	        "name": "All four Bookstore feeds",
 	        "description": "All four bookstore feeds.",
 	        "refreshInterval": 2,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/bookstore-quad"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/bookstore-quad"]
 	    },
 	    {
 	        "id": "broadcasting-nw",
 	        "name": "Broadcasting Building (NW)",
 	        "description": "",
 	        "refreshInterval": 5,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/broadcasting-nw"
+			"active": false,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/broadcasting-nw"]
 	    },
 	    {
 	        "id": "broadcasting-sw",
 	        "name": "Broadcasting Building (SW)",
 	        "description": "",
 	        "refreshInterval": 5,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/broadcasting-sw"
+			"active": true,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/broadcasting-sw"]
 	    },
 	    {
 	        "id": "student-fitness",
 	        "name": "Student Fitness Center",
 	        "description": "See how busy the fitness center is",
 	        "refreshInterval": 5,
-	        "location": "https://ws.byu.edu/services/cameras/rest/v1/streams/student-fitness"
+			"active": true,
+			"locations": ["https://ws.byu.edu/services/cameras/rest/v1/streams/student-fitness"]
 	    }
 	];
 
-	var useService = true;//can be disabled if one doesn't want to use the service.
+	var useService = false;//can be disabled if one doesn't want to use the service.
 
-	if(useService) 
+	if(useService)
 	{
 		//TODO: catch failures in case service goes down.
 		$.get('https://soaregistry.byu.edu/services/campusInformation/webcam/v1/streams/', function(response) {
 			loadValues(response);
 		});
 	}
-	else 
+	else
 	{
 		loadValues(defaultValues);
 	}
@@ -106,9 +118,11 @@ $(function() {
 		//set interval to match interval named in html
 		//loop through each key
 		$.each(values, function(key, value) {
+			if(!value.active) return; //only proceed for enabled endpoints
+
 			$('body').append('<h1>'+value.name+'</h1>');
 			$('body').append('<h2>'+value.description+'</h2>');
-			$('body').append('<img id="'+value.id+'" src="'+value.location+'" style="width:440px;" >');
+			$('body').append('<img id="'+value.id+'" src="'+value.locations[0]+'" style="width:440px;" >');
 
 			//allow for refreshing of images automatically (seconds, depending on interval provided)
 			setInterval(function() {
