@@ -1,7 +1,7 @@
 {
   "name": "BYU Webcams",
   "short_name": "BYU Webcams",
-  "version": "2.6",
+  "version": "2.7",
   "manifest_version": 2,
   "offline_enabled": false,
   "description": "Displays the current public BYU webcam images.",
